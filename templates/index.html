@@ -1,0 +1,93 @@
+{% extends "base.html" %} {% block subpage %}
+<body>
+  <h1>TODO</h1>
+  <div class="container">
+    <div class="row">
+      <div class="one column"></div>
+      <div class="twelve columns">
+        <table class="u-full-width">
+          <thead>
+            <tr>
+              <th>Ime opravila</th>
+              <th>Opis opravila</th>
+              <th>Stanje</th>
+              <th>Uredi</th>
+              <th>Izbriši</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in seznam %}
+            <tr>
+              <td>{{ s.ime }}</td>
+              <td>{{ s.opis }}</td>
+              {% if s.stanje == False %}
+              <td>Ni opravljeno</td>
+              {% elif s.stanje == True %}
+              <td>Opravljeno</td>
+              {% endif %}
+              <td>
+                <a href="/edit/{{ s.key.id() }}"><i class="fas fa-edit"></i></a>
+              </td>
+              <td>
+                <a href="/delete/{{ s.key.id() }}"
+                  ><i class="fas fa-times"></i
+                ></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <form method="post">
+          <input type="text" id="ime" name="ime" placeholder="Ime opravila" />
+          <input
+            type="text"
+            id="opis"
+            name="opis"
+            placeholder="Opis opravila"
+            placeholder="Opis opravila"
+          />
+          <button type="submit" id="button">Dodaj</button>
+        </form>
+        <div>
+          <h4>Opravljena opravila</h4>
+          <table id="table-done" class="u-full-width">
+            <thead>
+              <tr>
+                <th>Ime opravila</th>
+                <th>Opis opravila</th>
+                <th>Stanje</th>
+                <th>Uredi</th>
+                <th>Izbriši</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for s in seznam_done %}
+              <tr>
+                <td>{{ s.ime }}</td>
+                <td>{{ s.opis }}</td>
+                {% if s.stanje == False %}
+                <td>Ni opravljeno</td>
+                {% elif s.stanje == True %}
+                <td>Opravljeno</td>
+                {% endif %}
+                <td>
+                  <a href="/edit/{{ s.key.id() }}"
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                </td>
+                <td>
+                  <a href="/delete/{{ s.key.id() }}"
+                    ><i class="fas fa-times"></i
+                  ></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="one column"></div>
+    </div>
+  </div>
+</body>
+{% endblock subpage %}

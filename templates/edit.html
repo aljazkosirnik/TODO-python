@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block subpage %}
+<body>
+  <h1>TODO</h1>
+  <div class="container">
+    <div class="row">
+      <div class="one column"></div>
+      <div class="twelve columns">
+        <form method="post">
+          <h6>Ime opravila</h6>
+          <input
+            class="edit-input"
+            id="ime"
+            name="ime"
+            type="text"
+            value="{{ todo.ime }}"
+          /><br />
+          <h6>Opis opravila</h6>
+          <input
+            class="edit-input"
+            id="opis"
+            name="opis"
+            type="text"
+            value="{{ todo.opis }}"
+          /><br />
+          <h6 class="label-body">Končano opravilo?</h6>
+          {% if todo.stanje == True %}
+          <input type="checkbox" id="stanje" name="stanje" checked /> {% elif
+          todo.stanje == False %}
+          <input type="checkbox" id="stanje" name="stanje" /> {% endif %} <br />
+          <button type="submit">Popravi</button>
+        </form>
+      </div>
+      <div class="one column"></div>
+    </div>
+  </div>
+</body>
+{% endblock subpage %}

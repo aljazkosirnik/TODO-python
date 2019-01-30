@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block subpage %}
+<body>
+  <h2 style="margin-top:200px;">Ali res želiš izbrisati opravilo?</h2>
+  <h5><u>Ime opravila:</u> {{ todo.ime }}</h5>
+  <h5><u>Opis opravila:</u> {{ todo.opis }}</h5>
+  <form action="/delete/{{ todo.key.id() }}" method="post">
+    <button type="submit" class="button-primary">Izbriši</button>
+  </form>
+  <button href="/"><a href="/">Ne, želim nazaj na seznam opravil</a></button>
+</body>
+{% endblock subpage %}
